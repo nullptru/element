@@ -77,6 +77,7 @@
           :options="options"
           :props="config"
           :border="false"
+          :size="realSize"
           :render-label="$scopedSlots.default"
           @expand-change="handleExpandChange"
           @close="toggleDropDownVisible(false)"></el-cascader-panel>
@@ -300,6 +301,9 @@ export default {
   },
 
   watch: {
+    disabled() {
+      this.computePresentContent();
+    },
     value(val) {
       if (!isEqual(val, this.checkedValue)) {
         this.checkedValue = val;
